@@ -1,0 +1,46 @@
+from tkinter import *
+from tkinter import Tk, Label, Button, Canvas
+
+def clear_window():
+    for widget in window.winfo_children():
+        widget.destroy()
+
+def MenuWindow():
+    clear_window()
+    MenuBox("GUUF")
+    
+
+def PasswordManagerWindow():
+    clear_window()
+    MenuBox("Password Manager")
+
+def BlackmagicManualWindow():
+    clear_window()
+    MenuBox("Blackmagic ATEM Software Control Manual")
+
+def XSplitManualWindow():
+    clear_window()
+    MenuBox("XSplit Manual")
+
+def YouTubeManualWindow():
+    clear_window()
+    MenuBox("YouTube Manual")
+    labelStreamingApplication = Label(window, text = "Streaming Application").pack(side="left", padx=10)
+    info = Button(window, text = "?").pack(side="left", padx=10)
+    StreamingApplicationName = Entry(window, text = "Application Name").pack(side="top", pady=10)
+
+def MenuBox(title):
+    menuFrame = Frame()
+    menuFrame.place(relx=0.5, rely=0.5, anchor='center')
+    titleText = Label(window, text=title, font = ('Times 12 bold')).pack()
+    menuButton = Button(window, text="Menu",command = MenuWindow).pack(pady=5, side="top")
+    passwordManager = Button(window, text="Password Manager",command = PasswordManagerWindow).pack(pady=5, side="top")
+    blackmagicManual = Button(window, text="Blackmagic ATEM Software Control Manual",command = BlackmagicManualWindow).pack(pady=5, side="top")
+    xSplitManual = Button(window, text="XSplit Manual",command = XSplitManualWindow).pack(pady=5, side="top")
+    youTubeManual = Button(window, text="YouTube Manual",command = YouTubeManualWindow).pack(pady=5, side="top")
+
+window = Tk()
+window.title("GUUF")
+window.geometry("600x600")
+MenuWindow()
+window.mainloop()
