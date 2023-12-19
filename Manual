@@ -1,46 +1,32 @@
-from tkinter import *
-from tkinter import Tk, Label, Button, Canvas
-
 def clear_window():
-    for widget in window.winfo_children():
+    for widget in app.winfo_children():
         widget.destroy()
+
+def MenuBox(title):
+    menuFrame = MenuTitle(master = app,title = title).grid(row=0, column=0, padx=20, pady=2, sticky="nsew")
+    menuFrame = MenuButtons(master = app).grid(row=1, column=0, padx=20, pady=2, sticky="nsew")
 
 def MenuWindow():
     clear_window()
-    MenuBox("GUUF")
-    
-
-def PasswordManagerWindow():
-    clear_window()
-    MenuBox("Password Manager")
+    MenuBox("GUUF TIA")
 
 def BlackmagicManualWindow():
     clear_window()
     MenuBox("Blackmagic ATEM Software Control Manual")
+    frame = CTkFrame(master = app)
+    textBox = app.Text(frame)
 
-def XSplitManualWindow():
-    clear_window()
-    MenuBox("XSplit Manual")
 
-def YouTubeManualWindow():
-    clear_window()
-    MenuBox("YouTube Manual")
-    labelStreamingApplication = Label(window, text = "Streaming Application").pack(side="left", padx=10)
-    info = Button(window, text = "?").pack(side="left", padx=10)
-    StreamingApplicationName = Entry(window, text = "Application Name").pack(side="top", pady=10)
-
-def MenuBox(title):
-    menuFrame = Frame()
-    menuFrame.place(relx=0.5, rely=0.5, anchor='center')
-    titleText = Label(window, text=title, font = ('Times 12 bold')).pack()
-    menuButton = Button(window, text="Menu",command = MenuWindow).pack(pady=5, side="top")
-    passwordManager = Button(window, text="Password Manager",command = PasswordManagerWindow).pack(pady=5, side="top")
-    blackmagicManual = Button(window, text="Blackmagic ATEM Software Control Manual",command = BlackmagicManualWindow).pack(pady=5, side="top")
-    xSplitManual = Button(window, text="XSplit Manual",command = XSplitManualWindow).pack(pady=5, side="top")
-    youTubeManual = Button(window, text="YouTube Manual",command = YouTubeManualWindow).pack(pady=5, side="top")
-
-window = Tk()
-window.title("GUUF")
-window.geometry("600x600")
-MenuWindow()
-window.mainloop()
+class MenuTitle(CTkFrame):
+    def __init__(self, master, title, **kwargs):
+        super().__init__(master, **kwargs)
+        self.windowTitle = CTkLabel(self, text = title.upper(), font = ("TImes",24,"bold")).pack()
+        
+class MenuButtons(CTkFrame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        self.menuButton = CTkButton(self, text = "Menu", fg_color="transparent", hover_color="black", border_width=2, border_color="red",command = MenuWindow).grid(row=1, column=0, padx=5)
+        self.blackmagicManual = CTkButton(self, text = "Blackmagic ATEM Software Control Manual", fg_color="transparent", hover_color="black", border_width=2, border_color="red",command = BlackmagicManualWindow).grid(row=1, column=1, padx=5)
+        self.xSplitManual = CTkButton(self, text = "XSplit Manual", fg_color="transparent", hover_color="black", border_width=2, border_color="red").grid(row=1, column=2, padx=5)
+        self.youTubeManual = CTkButton(self, text = "YouTube Manual", fg_color="transparent", hover_color="black", border_width=2, border_color="red").grid(row=1, column=3, padx=5)
+        self.passwordManager = CTkButton(self, text = "Password Manager", fg_color="transparent", hover_color="black", border_width=2, border_color="red").grid(row=1, column=4, padx=5)
