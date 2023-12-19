@@ -1,3 +1,5 @@
+from customtkinter import CTk, CTkLabel, CTkButton, CTkFrame, CTkScrollbar, CText
+
 def clear_window():
     for widget in app.winfo_children():
         widget.destroy()
@@ -30,3 +32,9 @@ class MenuButtons(CTkFrame):
         self.xSplitManual = CTkButton(self, text = "XSplit Manual", fg_color="transparent", hover_color="black", border_width=2, border_color="red").grid(row=1, column=2, padx=5)
         self.youTubeManual = CTkButton(self, text = "YouTube Manual", fg_color="transparent", hover_color="black", border_width=2, border_color="red").grid(row=1, column=3, padx=5)
         self.passwordManager = CTkButton(self, text = "Password Manager", fg_color="transparent", hover_color="black", border_width=2, border_color="red").grid(row=1, column=4, padx=5)
+
+app = CTk()
+app.title("Test")
+app.geometry("600x600")
+MenuWindow()
+app.mainloop()
